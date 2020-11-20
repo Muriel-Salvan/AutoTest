@@ -57,11 +57,11 @@ This file configures AutoTest behaviour.
 Here is an example of its content:
 ```json
 {
-  "string": {
-    "on_start": "run",
-    "on_stop": "exit",
-    "tests_execution": "end"
-  }
+    "string": {
+        "on_start": "run",
+        "on_stop": "exit",
+        "tests_execution": "end"
+    }
 }
 ```
 
@@ -78,13 +78,13 @@ This file is being updated when registering tests to be run.
 Here is an example of its content:
 ```json
 {
-  "stringList": {
-    "tests_to_run": [
-      "test_name_1",
-      "test_name_2",
-      "test_name_3"
-    ]
-  }
+    "stringList": {
+        "tests_to_run": [
+            "test_name_1",
+            "test_name_2",
+            "test_name_3"
+        ]
+    }
 }
 ```
 
@@ -101,10 +101,10 @@ This file is being updated when executing tests.
 Here is an example of its content:
 ```json
 {
-  "string": {
-    "test_name_1": "ok",
-    "test_name_2": "failed"
-  }
+    "string": {
+        "test_name_1": "ok",
+        "test_name_2": "failed"
+    }
 }
 ```
 
@@ -138,12 +138,12 @@ A test run will:
 Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPCs_Run.json`:
 ```json
 {
-  "stringList": {
-    "tests_to_run": [
-      "skyrim.esm/78433",
-      "skyrim.esm/78434"
-    ]
-  }
+    "stringList": {
+        "tests_to_run": [
+            "skyrim.esm/78433",
+            "skyrim.esm/78434"
+        ]
+    }
 }
 ```
 
@@ -167,16 +167,18 @@ A test run will:
 Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_Locations_Run.json`:
 ```json
 {
-  "stringList": {
-    "tests_to_run": [
-      "DLC2ApocryphaWorld/-2/6",
-      "Alftand01"
-    ]
-  }
+    "stringList": {
+        "tests_to_run": [
+            "Tamriel/17/20",
+            "DLC01SoulCairnOrigin",
+            "Tamriel/10/0",
+            "SolitudeBardsCollege"
+        ]
+    }
 }
 ```
 
-![Example of Locations test](https://raw.githubusercontent.com/Muriel-Salvan/AutoTest/master/docs/locations_example.jpg)
+![Example of Locations test](https://raw.githubusercontent.com/Muriel-Salvan/AutoTest/master/docs/locations_example.gif)
 
 ### The in-game menu
 
@@ -201,6 +203,8 @@ When starting a tests session (either automatically on game load, or using conso
 4. Execute all tests that do not have an `ok` status, in the order of the Run list.
 5. Mark the session as finished in the main JSON config file (`"tests_execution": "end"`).
 6. Exit to desktop if the config file has `"on_stop": "exit"`.
+
+The JSON files are being updated in real-time, so that an external process can use their information while the tests are being executed.
 
 ## Compatibility
 
@@ -240,6 +244,7 @@ Here is an example of execution logs:
 [11/18/2020 - 02:25:39PM] Quit game as required at the end of the tests session
 [11/18/2020 - 02:25:40PM] Log closed
 ```
+Every log also appears in-game on the upper-left corner.
 
 The ESP plugin defines:
 * A new start quest and a new reference alias to be able to start tests upon game load.
@@ -251,38 +256,44 @@ The ESP plugin defines:
 ### Build a packaged version of AutoTest from the source
 
 This can be achieved using the `build.cmd` tool, from a command-line session:
-1. If The game directory is not the default one (standard Skyrim SSE installed via Steam), then set the `gameDir` variable to the game path.
-Example:
-```bat
-set "gameDir=C:\My Games\Skyrim"
-```
-2. If PapyrusUtils is installed in another location than the game data path, set the `papyrusUtilDir` variable to its path.
-Example:
-```bat
-set "PapyrusUtils=C:\My Mods\PapyrusUtils"
-```
-3. If ConsoleUtil is installed in another location than the game data path, set the `consoleUtilDir` variable to its path.
-Example:
-```bat
-set "consoleUtilDir=C:\My Mods\ConsoleUtil"
-```
-4. If SkyUILib is installed in another location than the game data path, set the `skyUILibDir` variable to its path.
-Example:
-```bat
-set "skyUILibDir=C:\My Mods\SkyUILib"
-```
-Please note that you may have to move the script sources of SkyUILib from `Scripts\Source` to `Source\Scripts` as their default location changed between Skyrim and Skyrim Special Edition.
-5. You'll need [7-zip](https://www.7-zip.org/) to package AutoTest. If 7-zip is installed to a non-standard location, specify the path to 7-zip using the `sevenZipDir` variable.
-Example:
-```bat
-set "sevenZipDir=C:\Programs\7zip"
-```
-6. Launch the `build.cmd` command from the root of the repository:
-```bat
-build.cmd
-```
 
-This will compile the Papyrus scripts and generate a packaged version of AutoTest in the file `AutoTest.7z`
+1. If The game directory is not the default one (standard Skyrim SSE installed via Steam), then set the `gameDir` variable to the game path.
+  Example:
+  ```bat
+  set "gameDir=C:\My Games\Skyrim"
+  ```
+  
+2. If PapyrusUtils is installed in another location than the game data path, set the `papyrusUtilDir` variable to its path.
+  Example:
+  ```bat
+  set "PapyrusUtils=C:\My Mods\PapyrusUtils"
+  ```
+  
+3. If ConsoleUtil is installed in another location than the game data path, set the `consoleUtilDir` variable to its path.
+  Example:
+  ```bat
+  set "consoleUtilDir=C:\My Mods\ConsoleUtil"
+  ```
+  
+4. If SkyUILib is installed in another location than the game data path, set the `skyUILibDir` variable to its path.
+  Example:
+  ```bat
+  set "skyUILibDir=C:\My Mods\SkyUILib"
+  ```
+  Please note that you may have to move the script sources of SkyUILib from `Scripts\Source` to `Source\Scripts` as their default location changed between Skyrim and Skyrim Special Edition.
+  
+5. You'll need [7-zip](https://www.7-zip.org/) to package AutoTest. If 7-zip is installed to a non-standard location, specify the path to 7-zip using the `sevenZipDir` variable.
+  Example:
+  ```bat
+  set "sevenZipDir=C:\Programs\7zip"
+  ```
+  
+6. Launch the `build.cmd` command from the root of the repository:
+  ```bat
+  build.cmd
+  ```
+
+This will compile the Papyrus scripts and generate a packaged version of AutoTest in the file `AutoTest.7z`.
 
 ## Contributions
 
