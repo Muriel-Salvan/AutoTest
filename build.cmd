@@ -32,3 +32,5 @@ cd ..\..\..
 
 del AutoTest.7z
 "%sevenZipDir%\7z.exe" a AutoTest.7z Data\ CHANGELOG.md LICENSE README.md docs\
+
+md_to_bbcode --input README.md --output README.bbcode

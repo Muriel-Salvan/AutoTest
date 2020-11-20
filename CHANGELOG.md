@@ -1,3 +1,3 @@
 # 1.0.0
 
-* Initial release
+* Initial release - Tests for NPCs and Locations.

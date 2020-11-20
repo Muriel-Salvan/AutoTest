@@ -257,7 +257,7 @@ The ESP plugin defines:
 
 This can be achieved using the `build.cmd` tool, from a command-line session:
 
-1. If The game directory is not the default one (standard Skyrim SSE installed via Steam), then set the `gameDir` variable to the game path.
+1. If the game directory is not the default one (standard Skyrim SSE installed via Steam), then set the `gameDir` variable to the game path.
   Example:
   ```bat
   set "gameDir=C:\My Games\Skyrim"
@@ -288,12 +288,15 @@ This can be achieved using the `build.cmd` tool, from a command-line session:
   set "sevenZipDir=C:\Programs\7zip"
   ```
   
-6. Launch the `build.cmd` command from the root of the repository:
+6. You'll need [md_to_bbcode](https://github.com/Muriel-Salvan/md_to_bbcode) to generate documentation for NexusMods. Make sure it is installed (meaning that `md_to_bbcode --version` works).
+  
+7. Launch the `build.cmd` command from the root of the repository:
   ```bat
   build.cmd
   ```
-
-This will compile the Papyrus scripts and generate a packaged version of AutoTest in the file `AutoTest.7z`.
+  
+  This will compile the Papyrus scripts and generate a packaged version of AutoTest in the file `AutoTest.7z`.
+  It will also generate a `README.bbcode` file which is a conversion of this `README.md` file in BBCode, ready to be copy-pasted in the NexusMod's description.
 
 ## Contributions
 
