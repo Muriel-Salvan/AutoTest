@@ -131,9 +131,12 @@ The test names used by this suite have the following format: `esp_name/decimal_f
 For example: `skyrim.esm/78433` for the NPC named Beirand in Skyrim Special Edition.
 
 A test run will:
-1. Teleport the player to the test cell `AutoTest_TestHall`
-2. Summon a copy of the NPC to be tested in front of him, without any inventory,
-3. Take a screenshot.
+1. Put the player in god mode (as some NPCs can be hostile or knock the Player).
+2. Disable Combat AI, so that NPCs should not attack player.
+3. Disable Non-combat AI, so that NPCs should not initiate actions.
+4. Teleport the player to the test cell `AutoTest_TestHall`
+5. Summon a copy of the NPC to be tested in front of him, without any inventory,
+6. Take a screenshot.
 
 Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPCs_Run.json`:
 ```json

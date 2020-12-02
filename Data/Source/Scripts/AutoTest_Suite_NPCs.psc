@@ -29,6 +29,8 @@ endFunction
 ; [API] This function is optional
 function BeforeTestsRun()
   ConsoleUtil.ExecuteCommand("tgm")
+  ConsoleUtil.ExecuteCommand("tcai")
+  ConsoleUtil.ExecuteCommand("tai")
 endFunction
 
 ; Run a given registered test
@@ -45,6 +47,8 @@ endFunction
 ; Finalize the runs of tests
 ; [API] This function is optional
 function AfterTestsRun()
+  ConsoleUtil.ExecuteCommand("tai")
+  ConsoleUtil.ExecuteCommand("tcai")
   ConsoleUtil.ExecuteCommand("tgm")
 endFunction
 
