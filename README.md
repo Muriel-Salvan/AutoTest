@@ -351,6 +351,11 @@ The ESP plugin defines:
 * A new quest that references all the tests suites that are available, as attached scripts to a reference alias.
 * A test cell named `AutoTest_TestHall` with some markers and an activator to run tests.
 
+## Tools you can use with AutoTest
+
+* [Modsvaskr](https://www.nexusmods.com/skyrimspecialedition/mods/42521): This command-line application is helping gamers making a heavy-modded game stable. It automates a lot of setup and tests, and will use AutoTest when such tests are required to be automated in-game.
+* [AutoTest Worldspace Location Generator](https://github.com/KenR9001/AUTOTEST_Worldspace_Location_Generator/releases): This command-line application generates Locations tests' run list based on user input (worldspace and ranged coordinates). This way you can easily have a full tests run that covers an area of any worldspace.
+
 ## Developers corner
 
 ### Build a packaged version of AutoTest from the source
@@ -397,6 +402,10 @@ This can be achieved using the `build.cmd` tool, from a command-line session:
   
   This will compile the Papyrus scripts and generate a packaged version of AutoTest in the file `AutoTest.7z`.
   It will also generate a `README.bbcode` file which is a conversion of this `README.md` file in BBCode, ready to be copy-pasted in the NexusMod's description.
+
+## Special thanks
+
+* To [KenR9001](https://www.nexusmods.com/skyrimspecialedition/users/5534351) for providing the [AutoTest Worldspace Location Generator](https://github.com/KenR9001/AUTOTEST_Worldspace_Location_Generator/releases), making the usage of AutoTest much easier!
 
 ## Contributions
 
