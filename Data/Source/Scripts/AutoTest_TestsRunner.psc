@@ -131,8 +131,9 @@ function RunTests(Quest questScript) global
     while idxTest < nbrTests && InTestsSession()
       string testName = scriptTest.GetTestName(idxTest)
       string testStatus = scriptTest.GetTestStatus(testName)
-      if testStatus != "ok"
+      if testStatus == "" || testStatus == "started"
         AutoTest_Log.Log("[ " + testType + " / " + testName + " (" + testStatus + ") ] - Start test")
+        scriptTest.SetTestStatus(testName, "started")
         scriptTest.RunTest(testName)
         AutoTest_Log.Log("[ " + testType + " / " + testName + " (" + scriptTest.GetTestStatus(testName) + ") ] - Test end")
       endIf
