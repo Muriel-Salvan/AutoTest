@@ -29,7 +29,8 @@ function BeforeTestsRun()
   ; To be overriden
 endFunction
 
-; Run a given registered test
+; Run a given registered test.
+; Set the status in this method.
 ; [API] This function is mandatory
 ;
 ; Parameters::

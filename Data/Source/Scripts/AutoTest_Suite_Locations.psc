@@ -43,7 +43,8 @@ function BeforeTestsRun()
   ConsoleUtil.ExecuteCommand("setini \"bForceAutoVanityMode:Camera\" 1")
 endFunction
 
-; Run a given registered test
+; Run a given registered test.
+; Set the status in this method.
 ; [API] This function is mandatory
 ;
 ; Parameters::
