@@ -144,15 +144,16 @@ The `NPCs` tests suite will take screenshots of NPCs without any inventory.
 This is useful to later look at the screenshots to detect black faces, neck gaps, missing meshes, missing textures etc...
 Screenshots are taken in the usual game directory, the same way they are taken with the `PrintScreen` key.
 
-The test names used by this suite have the following format: `esp_name/decimal_form_id`.
-For example: `skyrim.esm/78433` for the NPC named Beirand in Skyrim Special Edition.
+The test names used by this suite have the following format: `esp_name/form_id`.
+The `form_id` part can be given either directly as decimal, or hexadecimal (in this case it is prefixed with `0x`).
+For example: `skyrim.esm/78433` or `skyrim.esm/0x00013261` for the NPC named Beirand in Skyrim Special Edition.
 
 A test run will:
 1. Put the player in god mode (as some NPCs can be hostile or knock the Player).
 2. Disable Combat AI, so that NPCs should not attack player.
 3. Disable Non-combat AI, so that NPCs should not initiate actions.
-4. Teleport the player to the test cell `AutoTest_TestHall`
-5. Summon a copy of the NPC to be tested in front of him, without any inventory,
+4. Teleport the player to the test cell `AutoTest_TestHall`.
+5. Summon a copy of the NPC to be tested in front of him, without any inventory.
 6. Take a screenshot.
 
 Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPCs_Run.json`:
@@ -276,20 +277,19 @@ Here is the content to save in this file:
 {
     "stringList": {
         "tests_to_run": [
-            "skyrim.esm/115093"
+            "skyrim.esm/0x0001C195"
         ]
     }
 }
 ```
 
-In this example, the test name to be used for J'Zargo (`skyrim.esm/115093`) can be found using xEdit:
+In this example, the test name to be used for J'Zargo (`skyrim.esm/0x0001C195`) can be found using xEdit:
 1. Execute xEdit, loading all your mods.
 2. Right-click on the left pane and select `Apply filter`.
 3. Check the check-box `Name contains` and enter `J'Zargo` in the text field below.
 4. In the `by Record Signature` list (the middle-one), make sure `NPC_` is selected, then click on the `Filter` button.
 5. In the results shown on the left pane, you see which plugins define or overwrite your NPC (in this case `skyrim.esm`), and if you expand the list you'll see the NPC's form ID (in this case `0001C195`).
-6. You then need to convert the hexadecimal value `0001C195` to decimal. This can be done using the Windows calculator app: execute it, select the Programmer mode, select `HEX` and type `0001C195`. The calculator will show the corresponding decimal value in front of `DEC`. In this case it is `115093`.
-7. The resulting test name to be used in the NPC test is just the concatenation of those 2 information, separated with `/`: `skyrim.esm/115093`.
+6. The resulting test name to be used in the NPC test is just the concatenation of those 2 information, separated with `/`: `skyrim.esm/0x0001C195`.
 
 ### 2. Create the tests run file for Locations tests suite
 
