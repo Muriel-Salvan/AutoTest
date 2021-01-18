@@ -1,6 +1,6 @@
 Scriptname AutoTest_Suite_NPCs extends AutoTest_Suite
 {
-  Collection of script functions testing NPCs (using screenshots of nakes actors).
+  Collection of script functions testing NPCs (using screenshots of naked actors).
   This helps in finding issues with missing textures, not fitting body types...
   Dependencies:
   * ConsoleUtil (https://www.nexusmods.com/skyrimspecialedition/mods/24858)

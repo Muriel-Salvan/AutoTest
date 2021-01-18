@@ -152,6 +152,39 @@ Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPC
 
 ![Example of NPCs test](https://raw.githubusercontent.com/Muriel-Salvan/AutoTest/master/docs/npcs_example.jpg)
 
+#### NPCsHead
+
+The `NPCsHead` tests suite will take screenshots of NPCs' head without any inventory.
+This is especially useful to detect neck gaps.
+Screenshots are taken in the usual game directory, the same way they are taken with the `PrintScreen` key.
+
+The test names used by this suite have the following format: `esp_name/form_id`.
+The `form_id` part can be given either directly as decimal, or hexadecimal (in this case it is prefixed with `0x`).
+For example: `skyrim.esm/78433` or `skyrim.esm/0x00013261` for the NPC named Beirand in Skyrim Special Edition.
+
+A test run will:
+1. Put the player in god mode (as some NPCs can be hostile or knock the Player).
+2. Disable Combat AI, so that NPCs should not attack player.
+3. Disable Non-combat AI, so that NPCs should not initiate actions.
+4. Change fov to 20 (as it is much easier to detect neck seams this way).
+5. Teleport the player to the test cell `AutoTest_TestHall`.
+6. Summon a copy of the NPC to be tested in front of him, without any inventory.
+7. Take a screenshot.
+
+Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPCsHead_Run.json`:
+```json
+{
+    "stringList": {
+        "tests_to_run": [
+            "skyrim.esm/78433",
+            "skyrim.esm/78434"
+        ]
+    }
+}
+```
+
+![Example of NPCsHead test](https://raw.githubusercontent.com/Muriel-Salvan/AutoTest/master/docs/npcshead_example.jpg)
+
 #### Locations
 
 The `Locations` tests suite will teleport the player to a given location and make a small camera circle around.
