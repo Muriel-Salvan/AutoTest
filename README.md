@@ -116,6 +116,23 @@ Please refer to the different tests suites sections below to know which test nam
 
 When AutoTest starts a tests session, it will run all the tests defined in a Run list, and skip the tests that already have a status `ok`.
 
+#### The tests suites' Config files: `AutoTest_*_Config.json`
+
+Each test suite has an optional JSON file storing its configuration, that could alter the way tests are being performed.
+Configuration files are always organized as a set of key -> value string pairs.
+
+Here is an example of such a configuration file content:
+```json
+{
+    "string": {
+        "config_option_1": "value_1",
+        "config_option_2": "value_2"
+    }
+}
+```
+
+The meaning and values of each configuration option is specific to the tests suite. See below sections for details.
+
 ### The tests suites
 
 Different tests suites allow for different kind of tests.
@@ -215,6 +232,9 @@ Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_Loc
 ```
 
 ![Example of Locations test](https://raw.githubusercontent.com/Muriel-Salvan/AutoTest/master/docs/locations_example.gif)
+
+The `Locations` tests can be configurable and accepts the following configuration options:
+* `PanoramicTimeSecs`: Number of seconds (as a float in a string) taken by the test to make a quick panoramic turn around the player. Defaults to `"5.0"`.
 
 ### The in-game menu
 
