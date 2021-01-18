@@ -51,12 +51,17 @@ endFunction
 ; * *testName* (string): The test name to run
 function RunTest(string testName)
   string[] fields = StringUtil.Split(testName, "/")
+  string panoramicTimeSecsStr = GetConfig("PanoramicTimeSecs")
+  if panoramicTimeSecsStr == ""
+    panoramicTimeSecsStr = "5.0"
+  endIf
+  float panoramicTimeSecs = panoramicTimeSecsStr as float
   if fields.Length == 3
     ; This is an exterior cell
-    TestCow(fields[0], fields[1] as int, fields[2] as int, 5.0)
+    TestCow(fields[0], fields[1] as int, fields[2] as int, panoramicTimeSecs)
   else
     ; This is an interior cell
-    TestCoc(fields[0], 5.0)
+    TestCoc(fields[0], panoramicTimeSecs)
   endIf
   SetTestStatus(testName, "ok")
 endFunction

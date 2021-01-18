@@ -9,6 +9,7 @@ Scriptname AutoTest_Suite extends ReferenceAlias
 string gTestType = "Unknown"
 string gJSONRunFile = "AutoTest_Unknown_Run.json"
 string gJSONStatusesFile = "AutoTest_Unknown_Statuses.json"
+string gJSONconfigFile = "AutoTest_Unknown_Config.json"
 bool gInsideTransaction = false
 
 ; Initialize the script
@@ -61,6 +62,7 @@ function SetTestType(string testType)
   gTestType = testType
   gJSONRunFile = "AutoTest_" + gTestType + "_Run.json"
   gJSONStatusesFile = "AutoTest_" + gTestType + "_Statuses.json"
+  gJSONConfigFile = "AutoTest_" + gTestType + "_Config.json"
 endFunction
 
 ; Get the test type
@@ -89,6 +91,16 @@ endFunction
 ; * string: The test status
 string function GetTestStatus(string testName)
   return JsonUtil.GetStringValue(gJSONStatusesFile, testName)
+endFunction
+
+; Get a config value from the JSON config file
+;
+; Parameters::
+; * *configName* (string): The config name
+; Result::
+; * string: The config value
+string function GetConfig(string configName)
+  return JsonUtil.GetStringValue(gJSONConfigFile, configName)
 endFunction
 
 ; Get the number of registered tests
