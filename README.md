@@ -459,6 +459,7 @@ This can be achieved using the `build.cmd` tool, from a command-line session:
 ## Special thanks
 
 * To [KenR9001](https://www.nexusmods.com/skyrimspecialedition/users/5534351) for providing the [AutoTest Worldspace Location Generator](https://github.com/KenR9001/AUTOTEST_Worldspace_Location_Generator/releases), making the usage of AutoTest much easier!
+* To [WCH3](https://www.nexusmods.com/skyrimspecialedition/users/40320760) for helping in designing the NPCsHead tests suite.
 
 ## Contributions
 
