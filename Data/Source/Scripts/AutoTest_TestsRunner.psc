@@ -30,6 +30,7 @@ function EndTestsSession() global
   ; Set the context that we are running tests
   string jsonFileName = "AutoTest_Config.json"
   JsonUtil.SetStringValue(jsonFileName, "tests_execution", "end")
+  JsonUtil.SetStringValue(jsonFileName, "on_start", "nothing")
   JsonUtil.Save(jsonFileName)
   AutoTest_Log.Log("End the tests session")
   ; In case we are supposed to exit at the end of the tests session, do it.
