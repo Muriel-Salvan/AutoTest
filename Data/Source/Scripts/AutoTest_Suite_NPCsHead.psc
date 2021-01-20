@@ -7,7 +7,7 @@ Scriptname AutoTest_Suite_NPCsHead extends AutoTest_Suite_NPCs
   * SKSE for StringUtil (https://skse.silverlock.org/)
 }
 
-int gPreviousFov = 90
+float gPreviousFov = 65.0
 
 ; Initialize the script
 ; [API] This function is mandatory and has to use SetTestType
