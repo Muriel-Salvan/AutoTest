@@ -51,7 +51,7 @@ endFunction
 ; * *testName* (string): The test name to run
 function RunTest(string testName)
   string[] fields = StringUtil.Split(testName, "/")
-  string panoramicTimeSecsStr = GetConfig("PanoramicTimeSecs")
+  string panoramicTimeSecsStr = GetConfig("panoramic_time_secs")
   if panoramicTimeSecsStr == ""
     panoramicTimeSecsStr = "5.0"
   endIf

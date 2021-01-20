@@ -235,7 +235,16 @@ Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_Loc
 ![Example of Locations test](https://raw.githubusercontent.com/Muriel-Salvan/AutoTest/master/docs/locations_example.gif)
 
 The `Locations` tests can be configurable and accepts the following configuration options:
-* `PanoramicTimeSecs`: Number of seconds (as a float in a string) taken by the test to make a quick panoramic turn around the player. Defaults to `"5.0"`.
+* `panoramic_time_secs`: Number of seconds (as a float in a string) taken by the test to make a quick panoramic turn around the player. Defaults to `"5.0"`.
+
+Example of Config file for this tests suite, setting the panoramic time to 30 seconds, in `SKSE\Plugins\StorageUtilData\AutoTest_Locations_Config.json`:
+```json
+{
+    "string": {
+        "panoramic_time_secs": "30.0"
+    }
+}
+```
 
 ### The in-game menu
 
