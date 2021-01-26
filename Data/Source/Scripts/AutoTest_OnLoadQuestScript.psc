@@ -23,11 +23,13 @@ Function InitializeAutoTest(Quest questScript)
   RegisterForMenu("Console")
   ; If we are in a tests session, resume it.
   if AutoTest_TestsRunner.InTestsSession()
+    AutoTest_Log.Log("Resuming previous tests session")
     ; Automatically resume tests.
     ; The session was already started.
     AutoTest_TestsRunner.InitTests(questScript)
     AutoTest_TestsRunner.RunTests(questScript)
   elseif JsonUtil.GetStringValue("AutoTest_Config.json", "on_start") == "run"
+    AutoTest_Log.Log("Starting tests session from the game load")
     ; We have to start testing
     AutoTest_TestsRunner.StartTestsSession()
     AutoTest_TestsRunner.InitTests(questScript)
@@ -64,11 +66,13 @@ Event OnKeyDown(int keyCode)
         string[] cmd = StringUtil.Split(cmdLine, " ")
         ; Handle all possible commands we want to use
         if cmd[0] == "start_tests"
+          AutoTest_Log.Log("User issued start_tests")
           AutoTest_TestsRunner.StartTestsSession()
           AutoTest_TestsRunner.InitTests(QuestScriptsContainer)
           AutoTest_TestsRunner.RunTests(QuestScriptsContainer)
           bSuccess = true
         elseif cmd[0] == "stop_tests"
+          AutoTest_Log.Log("User issued stop_tests")
           JsonUtil.SetStringValue("AutoTest_Config.json", "stopped_by", "user")
           AutoTest_TestsRunner.EndTestsSession()
           bSuccess = true
