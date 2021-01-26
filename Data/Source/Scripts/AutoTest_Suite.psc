@@ -160,3 +160,57 @@ function ClearRegisteredTests()
   JsonUtil.StringListClear(gJSONRunFile, "tests_to_run")
   SaveDb()
 endFunction
+
+; Convert a String storing a hex number into an int
+;
+; Parameters::
+; * *hexString* (string): The hexadecimal string
+; Result::
+; * int: The corresponding number
+int function HexToInt(string hexString)
+  int result = 0
+  int strLength = StringUtil.GetLength(hexString)
+  int idx = 0
+  while (idx < strLength)
+    string currentDigit = StringUtil.GetNthChar(hexString, idx)
+    int currentValue
+    if (currentDigit == "1")
+      currentValue = 1
+    elseIf (currentDigit == "2")
+      currentValue = 2
+    elseIf (currentDigit == "3")
+      currentValue = 3
+    elseIf (currentDigit == "4")
+      currentValue = 4
+    elseIf (currentDigit == "5")
+      currentValue = 5
+    elseIf (currentDigit == "6")
+      currentValue = 6
+    elseIf (currentDigit == "7")
+      currentValue = 7
+    elseIf (currentDigit == "8")
+      currentValue = 8
+    elseIf (currentDigit == "9")
+      currentValue = 9
+    elseIf (currentDigit == "A")
+      currentValue = 10
+    elseIf (currentDigit == "B")
+      currentValue = 11
+    elseIf (currentDigit == "C")
+      currentValue = 12
+    elseIf (currentDigit == "D")
+      currentValue = 13
+    elseIf (currentDigit == "E")
+      currentValue = 14
+    elseIf (currentDigit == "F")
+      currentValue = 15
+    else
+      currentValue = 0
+    endIf
+    if currentValue > 0
+      result += Math.LeftShift(currentValue, 4 * (strLength - idx - 1))
+    endIf
+    idx += 1
+  endWhile
+  return result
+endFunction

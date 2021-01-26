@@ -41,7 +41,13 @@ endFunction
 ; * *testName* (string): The test name to run
 function RunTest(string testName)
   string[] fields = StringUtil.Split(testName, "/")
-  ScreenshotOf(fields[1] as int, fields[0])
+  int formId = 0
+  if (StringUtil.SubString(fields[1], 0, 2) == "0x")
+    formId = HexToInt(StringUtil.SubString(fields[1], 2))
+  else
+    formId = fields[1] as int
+  endIf
+  ScreenshotOf(formId, fields[0])
   SetTestStatus(testName, "ok")
 endFunction
 
