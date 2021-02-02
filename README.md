@@ -5,16 +5,17 @@
 When modding a Bethesda game (Skyrim, Fallout...) there comes a time when the game becomes unstable.
 This unstability comes from the complex interactions different mods can have, and the difficulty in integrating those interactions, in terms of game objects' properties, scripting, files priorities.
 A lot of tools in the modding communities already tackle this issue by providing a lot of checks between mods and their files.
-Other tools also offer automatic patches to make mods integration easier.
+Other tools also offer automatic patches to make mods integration easier.<br>
 
 However some issues are too complex to be diagnosed only by looking at the esp files or the load orders.
 For such problems **the gamer has to test in-game**: load different locations, fly around a little bit, check NPCs interactions, etc...
-All those in-game tests are really time consuming, and some of those tests could be automated.
+All those in-game tests are really time consuming, and some of those tests could be automated.<br>
 
 The purpose of AutoTest is to **provide a simple in-game testing framework that can execute some of those tests automatically**.
-This can save hours of manual testing to have a better confidence in a game's stability.
+This can save hours of manual testing to have a better confidence in a game's stability.<br>
 
 The list of games that are eligible to this tool (non-exhaustive list):
+
 * Skyrim Special Edition - Tested successfully.
 * Skyrim - Not tested yet - Feedback welcome!
 * Fallout 4 - Not tested yet - Feedback welcome!
@@ -22,6 +23,7 @@ The list of games that are eligible to this tool (non-exhaustive list):
 ## Requirements
 
 1 tool and 3 mods are needed for AutoTest to work:
+
 * [SKSE](https://skse.silverlock.org/) to support a lot of scripting. - You have to install on your Bethesda game.
 * [PapyrusUtils](https://www.nexusmods.com/skyrimspecialedition/mods/13048) to interact with external JSON files for tests run and statuses.
 * [SkyUILib](https://www.nexusmods.com/skyrim/mods/57308) to provide a nice menu interface. - This can be installed for both Skyrim and SkyrimSE.
@@ -66,6 +68,7 @@ Here is an example of its content:
 ```
 
 Here is an explanation of each one of its properties:
+
 * **on_start**: Gives an action to perform once a game is being loaded. If absent it does nothing. If set to `run` then tests execution will start as soon as the game is loaded.
 * **on_stop**: Gives an action to perform once tests have finished executing. If absent it does nothing. If set to `exit` then the game will exit to desktop.
 * **tests_execution**: The value is set by AutoTest in-game testing. `run` indicates that a tests session is being executed. `end` indicates that the tests execution has ended.
@@ -89,6 +92,7 @@ Here is an example of its content:
 ```
 
 Here is an explanation of each one of its properties:
+
 * **tests_to_run**: A list of test names to be run when the tests session will start. By default, no test is to be run.
 
 Please refer to the different tests suites sections below to know which test names can be used for each tests suite.
@@ -149,6 +153,7 @@ The `form_id` part can be given either directly as decimal, or hexadecimal (in t
 For example: `skyrim.esm/78433` or `skyrim.esm/0x00013261` for the NPC named Beirand in Skyrim Special Edition.
 
 A test run will:
+
 1. Put the player in god mode (as some NPCs can be hostile or knock the Player).
 2. Disable Combat AI, so that NPCs should not attack player.
 3. Disable Non-combat AI, so that NPCs should not initiate actions.
@@ -181,6 +186,7 @@ The `form_id` part can be given either directly as decimal, or hexadecimal (in t
 For example: `skyrim.esm/78433` or `skyrim.esm/0x00013261` for the NPC named Beirand in Skyrim Special Edition.
 
 A test run will:
+
 1. Put the player in god mode (as some NPCs can be hostile or knock the Player).
 2. Disable Combat AI, so that NPCs should not attack player.
 3. Disable Non-combat AI, so that NPCs should not initiate actions.
@@ -213,6 +219,7 @@ The test names used by this suite have the following formats:
 * `cellname`. For example: `alftand01` to test the interior cell named `alftand01`.
 
 A test run will:
+
 1. Put the player in god mode (as teleporting can put the player in dangerous situations).
 2. Teleport the player to the cell to be tested (using a `cow` or `coc` console command).
 3. Set the camera in third-person view far away.
@@ -263,6 +270,7 @@ Some console commands are available to pilot tests run:
 ### Running a tests session
 
 When starting a tests session (either automatically on game load, or using console or the in-game menu), AutoTest will:
+
 1. Mark the session as running in the main JSON config file (`"tests_execution": "run"`).
 2. Create a save game named `auto_test`. This is useful to later get back to testing immediately using this save game.
 3. Loop over all tests suites, and for each one get its list of tests to execute from the Run list JSON file.
@@ -293,6 +301,7 @@ Here is the content to save in this file:
 ```
 
 In this example, the test name to be used for J'Zargo (`skyrim.esm/0x0001C195`) can be found using xEdit:
+
 1. Execute xEdit, loading all your mods.
 2. Right-click on the left pane and select `Apply filter`.
 3. Check the check-box `Name contains` and enter `J'Zargo` in the text field below.
@@ -409,6 +418,7 @@ Here is an example of execution logs:
 Every log also appears in-game on the upper-left corner.
 
 The ESP plugin defines:
+
 * A new start quest and a new reference alias to be able to start tests upon game load.
 * A new quest that references all the tests suites that are available, as attached scripts to a reference alias.
 * A test cell named `AutoTest_TestHall` with some markers and an activator to run tests.
@@ -455,7 +465,7 @@ This can be achieved using the `build.cmd` tool, from a command-line session:
   set "sevenZipDir=C:\Programs\7zip"
   ```
   
-6. You'll need [md_to_bbcode](https://github.com/Muriel-Salvan/md_to_bbcode) to generate documentation for NexusMods. Make sure it is installed (meaning that `md_to_bbcode --version` works).
+6. You'll need [`md_to_bbcode`](https://github.com/Muriel-Salvan/md_to_bbcode) to generate documentation for NexusMods. Make sure it is installed (meaning that `md_to_bbcode --version` works).
   
 7. Launch the `build.cmd` command from the root of the repository:
   ```bat
