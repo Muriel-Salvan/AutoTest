@@ -158,7 +158,7 @@ A test run will:
 2. Disable Combat AI, so that NPCs should not attack player.
 3. Disable Non-combat AI, so that NPCs should not initiate actions.
 4. Teleport the player to the test cell `AutoTest_TestHall`.
-5. Summon a copy of the NPC to be tested in front of him, without any inventory.
+5. Summon a copy of the NPC to be tested in front of him, without any inventory. (Configurable through the 'Config' file, see below)
 6. Take a screenshot.
 
 Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPCs_Run.json`:
@@ -169,6 +169,17 @@ Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPC
             "skyrim.esm/78433",
             "skyrim.esm/78434"
         ]
+    }
+}
+
+The `NPCs` tests can be configurable and accepts the following configuration options:
+* `non_nude`: true or false taken by the test to determine if NPCs are unclothed during ScreenShots. Defaults to `"false"`.
+
+Example of Config file for this tests suite, setting the panoramic time to 30 seconds, in `SKSE\Plugins\StorageUtilData\AutoTest_Locations_Config.json`:
+```json
+{
+    "string": {
+        "non_nude": "true"
     }
 }
 ```

@@ -28,9 +28,12 @@ endFunction
 ; Prepare the runs of tests
 ; [API] This function is optional
 function BeforeTestsRun()
+  ; TODO: get PC Scale
   ConsoleUtil.ExecuteCommand("tgm")
   ConsoleUtil.ExecuteCommand("tcai")
   ConsoleUtil.ExecuteCommand("tai")
+  ; TODO disable UI
+  ConsoleUtil.ExecuteCommand("tm")
 endFunction
 
 ; Run a given registered test.
@@ -41,6 +44,7 @@ endFunction
 ; * *testName* (string): The test name to run
 function RunTest(string testName)
   string[] fields = StringUtil.Split(testName, "/")
+  
   int formId = 0
   if (StringUtil.SubString(fields[1], 0, 2) == "0x")
     formId = HexToInt(StringUtil.SubString(fields[1], 2))
@@ -54,9 +58,12 @@ endFunction
 ; Finalize the runs of tests
 ; [API] This function is optional
 function AfterTestsRun()
+  ; TODO: set PC Scale
   ConsoleUtil.ExecuteCommand("tai")
   ConsoleUtil.ExecuteCommand("tcai")
   ConsoleUtil.ExecuteCommand("tgm")
+  ; TODO enable UI
+  ConsoleUtil.ExecuteCommand("tm")
 endFunction
 
 ; Register a screenshot test of a given BaseID
@@ -74,20 +81,38 @@ endFunction
 ; * *baseId* (Integer): The BaseID to clone and take screenshot
 ; * *espName* (String): The name of the ESP containing this base ID
 function ScreenshotOf(int baseId, string espName)
+
   int formId = baseId + Game.GetModByName(espName) * 16777216
   Form formToSpawn = Game.GetFormFromFile(formId, espName)
   string formName = formToSpawn.GetName()
   Log("[ " + espName + "/" + baseId + " ] - [ Start ] - Take screenshot of FormID 0x" + formId + " (" + formName + ")")
   Game.GetPlayer().MoveTo(ViewPointAnchor)
   ObjectReference newRef = TeleportAnchor.PlaceAtMe(formToSpawn)
-  newRef.RemoveAllItems()
+  ; TODO: Add option for clothes here
+
+  string nonNudeNPC = GetConfig("non_nude")
+  if nonNudeNPC != "true"
+    nonNudeNPC = "false"
+  endIf
+
+  if nonNudeNPC == "false"
+    newRef.RemoveAllItems()
+  endIf
+  
   ; Wait for the 3D model to be loaded
   while (!newRef.Is3DLoaded())
     Utility.wait(0.2)
   endWhile
   Utility.wait(1.0)
+
+  ; ensure PC 1st party view (summoning some NPCs seem to change POV)
+  Game.ForceFirstPerson()
+  ; TODO: ensure PC is looking at NPC
+
   ; Print Screen
+  ; TODO: grab PrintScreen key from Config
   Input.TapKey(183)
+  ; TODO: Rename/Relocate Screenshots
   ; Remove the reference
   newRef.DisableNoWait()
   newRef.Delete()
