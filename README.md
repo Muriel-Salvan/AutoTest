@@ -175,7 +175,7 @@ Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPC
 The `NPCs` tests can be configurable and accepts the following configuration options:
 * `non_nude`: true or false taken by the test to determine if NPCs are unclothed during ScreenShots. Defaults to `"false"`.
 
-Example of Config file for this tests suite, setting the panoramic time to 30 seconds, in `SKSE\Plugins\StorageUtilData\AutoTest_Locations_Config.json`:
+Example of Config file for this tests suite, setting the non_nude value to "true"s, in `SKSE\Plugins\StorageUtilData\AutoTest_NPCs_Config.json`:
 ```json
 {
     "string": {
