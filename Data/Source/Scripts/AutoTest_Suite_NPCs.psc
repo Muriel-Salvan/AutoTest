@@ -32,7 +32,7 @@ function BeforeTestsRun()
   ConsoleUtil.ExecuteCommand("tgm")
   ConsoleUtil.ExecuteCommand("tcai")
   ConsoleUtil.ExecuteCommand("tai")
-  ; TODO disable UI
+  ; Disable UI
   ConsoleUtil.ExecuteCommand("tm")
 endFunction
 
@@ -62,7 +62,7 @@ function AfterTestsRun()
   ConsoleUtil.ExecuteCommand("tai")
   ConsoleUtil.ExecuteCommand("tcai")
   ConsoleUtil.ExecuteCommand("tgm")
-  ; TODO enable UI
+  ; Re-enable UI
   ConsoleUtil.ExecuteCommand("tm")
 endFunction
 
@@ -88,17 +88,12 @@ function ScreenshotOf(int baseId, string espName)
   Log("[ " + espName + "/" + baseId + " ] - [ Start ] - Take screenshot of FormID 0x" + formId + " (" + formName + ")")
   Game.GetPlayer().MoveTo(ViewPointAnchor)
   ObjectReference newRef = TeleportAnchor.PlaceAtMe(formToSpawn)
-  ; TODO: Add option for clothes here
 
-  string nonNudeNPC = GetConfig("non_nude")
-  if nonNudeNPC != "true"
-    nonNudeNPC = "false"
-  endIf
-
-  if nonNudeNPC == "false"
+  ; Check option for clothes
+  if (GetConfig("non_nude") != "true")
     newRef.RemoveAllItems()
   endIf
-  
+
   ; Wait for the 3D model to be loaded
   while (!newRef.Is3DLoaded())
     Utility.wait(0.2)

@@ -1,9 +1,8 @@
 # Compiled scripts
-
+Data/Scripts
 
 # Packaged artefact
 AutoTest.7z
 
 # Generated README for NexusMods
 README.bbcode
-build.cmd
