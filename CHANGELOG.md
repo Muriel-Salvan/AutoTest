@@ -6,6 +6,7 @@
 * [NPCsHead] Added some scripting to take better headshots of child NPCs.
 * [NPCsHead] [NPCs] Hide UI while taking screenshots.
 * [NPCsHead] [NPCs] Added code to make sure player is in 1stPerson View.
+* Tested support on Skyrim SE 1.6.
 
 # 1.1.0
 
