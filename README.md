@@ -44,7 +44,7 @@ Command consoles can also pilot the tests execution.
 The [Modsvaskr](https://www.nexusmods.com/skyrimspecialedition/mods/42521) is a tool that can also use AutoTest based on your mods and provide you with much more potential - highly recommended.
 
 AutoTest is organized around tests suites: each tests suite represents a given type of test to perform. For example the tests suite `NPCs` will be able to test various NPCs from the game, thus realizing several tests.
-Test suites are like plugins for AutoTest: they are handled as Papyrus scripts named `AutoTest_Suite_*.psc` and can easily be completed with new ones to implement new kinds of tests. **Contributors more than welcome to provide new test suites that will benefit the whole community!** - Please create a PR on this repo or your fork or contact me if you want to share: I'll be very happy to add your contribution and credit in this project!
+Test suites are like plugins for AutoTest: they are handled as Papyrus scripts named `AutoTest_Suite_*.psc` and can easily be completed with new ones to implement new kinds of tests. **Contributors more than welcome to provide new test suites that will benefit the whole community!** - Please create a PR on this repo or your fork or contact me if you want to share: I'll be very happy to add your contribution and credit you in this project!
 
 ### JSON files
 
@@ -158,7 +158,7 @@ A test run will:
 2. Disable Combat AI, so that NPCs should not attack player.
 3. Disable Non-combat AI, so that NPCs should not initiate actions.
 4. Teleport the player to the test cell `AutoTest_TestHall`.
-5. Summon a copy of the NPC to be tested in front of him, without any inventory. (Configurable through the 'Config' file, see below)
+5. Summon a copy of the NPC to be tested in front of him, without any inventory (configurable through the 'Config' file, see below)
 6. Take a screenshot.
 
 Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPCs_Run.json`:
@@ -384,7 +384,7 @@ If you don't have an `OK` status for some tests (or if lines are missing), it me
 
 The in-game menu can register for you some tests to be run (it will generate the tests's run lists) (access this menu from the test hall, in the console type `coc AutoTest_TestHall`).
 
-If you want to interrupt testing in the middle of a tests session, you can use the `stop_tests` console command anytime.
+If you want to interrupt testing in the middle of a tests session, you can use the `stop_tests` console command anytime. Please note that some tests hide the console and the menus, so you will first need to type `tm` in case the console does not show up.
 
 Check also the content of `SKSE\Plugins\StorageUtilData\AutoTest_Config.json` (see details in the previous sections) to automatically run the tests when game is loaded, and automatically quit the game when tests session is finished.
 
@@ -395,6 +395,7 @@ This mod is compatible with all mods without conflict.
 ## Troubleshooting
 
 Logs of execution are stored as Papyrus logs in files named `My Games/Skyrim Special Edition/Logs/Script/User/AutoTest.*.log`.
+You may need to activate Papyrus logs following [those instructions](https://www.nexusmods.com/skyrim/articles/368).
 Here is an example of execution logs:
 
 ```
@@ -445,40 +446,47 @@ The ESP plugin defines:
 
 This can be achieved using the `build.cmd` tool, from a command-line session:
 
-1. If the game directory is not the default one (standard Skyrim SSE installed via Steam), then set the `gameDir` variable to the game path.
+1. You'll need the Creation Kit installed in your Skyrim SE instllation path. The Creation Kit can be installed easily via Steam.
+  
+2. You'll need to get the Creation Kit source scripts uncompressed from your `<gameDir>\Data\Scripts.zip` into `<gameDir>\Data`.
+  
+3. For Skyrim SSE, you need to copy all script files from `Scripts\Source` to `Source\Scripts` as their default location changed between Skyrim and Skyrim Special Edition. This includes scripts from the CreationKit, SKSE, SkyUILib and ConsoleUtilSSE.
+  
+4. If the game directory is not the default one (standard Skyrim SSE installed via Steam), then set the `gameDir` variable to the game path.
   Example:
   ```bat
   set "gameDir=C:\My Games\Skyrim"
   ```
   
-2. If PapyrusUtils is installed in another location than the game data path, set the `papyrusUtilDir` variable to its path.
+5. If PapyrusUtils is installed in another location than the game data path, set the `papyrusUtilDir` variable to its path.
   Example:
   ```bat
   set "PapyrusUtils=C:\My Mods\PapyrusUtils"
   ```
   
-3. If ConsoleUtil is installed in another location than the game data path, set the `consoleUtilDir` variable to its path.
+6. If ConsoleUtil is installed in another location than the game data path, set the `consoleUtilDir` variable to its path.
   Example:
   ```bat
   set "consoleUtilDir=C:\My Mods\ConsoleUtil"
   ```
+  Please note that you may have to move the script sources of ConsoleUtil from `Scripts\Source` to `Source\Scripts` as their default location changed between Skyrim and Skyrim Special Edition.
   
-4. If SkyUILib is installed in another location than the game data path, set the `skyUILibDir` variable to its path.
+7. If SkyUILib is installed in another location than the game data path, set the `skyUILibDir` variable to its path.
   Example:
   ```bat
   set "skyUILibDir=C:\My Mods\SkyUILib"
   ```
   Please note that you may have to move the script sources of SkyUILib from `Scripts\Source` to `Source\Scripts` as their default location changed between Skyrim and Skyrim Special Edition.
   
-5. You'll need [7-zip](https://www.7-zip.org/) to package AutoTest. If 7-zip is installed to a non-standard location, specify the path to 7-zip using the `sevenZipDir` variable.
+8. You'll need [7-zip](https://www.7-zip.org/) to package AutoTest. If 7-zip is installed to a non-standard location, specify the path to 7-zip using the `sevenZipDir` variable.
   Example:
   ```bat
   set "sevenZipDir=C:\Programs\7zip"
   ```
   
-6. You'll need [`md_to_bbcode`](https://github.com/Muriel-Salvan/md_to_bbcode) to generate documentation for NexusMods. Make sure it is installed (meaning that `md_to_bbcode --version` works).
+9. You'll need [`md_to_bbcode`](https://github.com/Muriel-Salvan/md_to_bbcode) to generate documentation for NexusMods. Make sure it is installed (meaning that `md_to_bbcode --version` works).
   
-7. Launch the `build.cmd` command from the root of the repository:
+10. Launch the `build.cmd` command from the root of the repository:
   ```bat
   build.cmd
   ```
@@ -488,6 +496,7 @@ This can be achieved using the `build.cmd` tool, from a command-line session:
 
 ## Special thanks
 
+* To [getsmartt](https://github.com/getsmartt) for the development of many features, including children and scale support in NPCs and NPCsHead tests suites.
 * To [KenR9001](https://www.nexusmods.com/skyrimspecialedition/users/5534351) for providing the [AutoTest Worldspace Location Generator](https://github.com/KenR9001/AUTOTEST_Worldspace_Location_Generator/releases), making the usage of AutoTest much easier!
 * To [WCH3](https://www.nexusmods.com/skyrimspecialedition/users/40320760) for helping in designing the NPCsHead tests suite.
 
