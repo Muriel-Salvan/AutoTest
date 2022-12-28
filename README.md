@@ -171,6 +171,7 @@ Example of Run file for this test, in `SKSE\Plugins\StorageUtilData\AutoTest_NPC
         ]
     }
 }
+```
 
 The `NPCs` tests can be configurable and accepts the following configuration options:
 * `non_nude`: true or false taken by the test to determine if NPCs are unclothed during ScreenShots. Defaults to `"false"`.
