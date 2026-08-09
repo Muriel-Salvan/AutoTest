@@ -65,14 +65,13 @@ Event OnKeyDown(int keyCode)
         endif
         string[] cmd = StringUtil.Split(cmdLine, " ")
         ; Handle all possible commands we want to use
+        AutoTest_Log.Log("User issued " + cmd[0])
         if cmd[0] == "start_tests"
-          AutoTest_Log.Log("User issued start_tests")
           AutoTest_TestsRunner.StartTestsSession()
           AutoTest_TestsRunner.InitTests(QuestScriptsContainer)
           AutoTest_TestsRunner.RunTests(QuestScriptsContainer)
           bSuccess = true
         elseif cmd[0] == "stop_tests"
-          AutoTest_Log.Log("User issued stop_tests")
           JsonUtil.SetStringValue("AutoTest_Config.json", "stopped_by", "user")
           AutoTest_TestsRunner.EndTestsSession()
           bSuccess = true
